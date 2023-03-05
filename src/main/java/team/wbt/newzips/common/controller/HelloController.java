@@ -8,4 +8,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() { return "hello"; }
+
+    @GetMapping("/")
+    public String index() { return "Project Newzips RESTAPI"; }
 }
