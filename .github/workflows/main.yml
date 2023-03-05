@@ -7,6 +7,7 @@ on:
       
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
+  GCE_SA_KEY: ${{ secrets.GCE_SA_KEY }}
   GCE_INSTANCE: wbt-newzips-backend
   GCE_INSTANCE_ZONE: asia-northeast3-a
 
@@ -45,7 +46,11 @@ jobs:
     
     # Setup gcloud CLI
     - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
+#      uses: google-github-actions/setup-gcloud@v1
+      uses: google-github-actions/setup-gcloud@v0
+      with:
+        service_account_key: $GCE_SA_KEY
+        project_id: $PROJECT_ID
       
 
     # Configure Docker to use the gcloud command-line tool as a credential
