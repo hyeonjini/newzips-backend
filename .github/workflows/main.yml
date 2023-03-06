@@ -65,7 +65,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4.3.0
       with:
-        images: $DOCKER_NAMESPACE/$DOCKER_REPOSITORY
+        images: choihj94/wbt
         
     - name: Build and Push Docker image
       uses: docker/build-push-action@v4.0.0
