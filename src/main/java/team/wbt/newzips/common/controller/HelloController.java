@@ -10,5 +10,5 @@ public class HelloController {
     public String hello() { return "hello"; }
 
     @GetMapping("/")
-    public String index() { return "Project Newzips RESTAPI v2"; }
+    public String index() { return "Project Newzips RESTAPI v3"; }
 }
