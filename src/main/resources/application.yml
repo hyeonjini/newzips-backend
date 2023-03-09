@@ -1,2 +1,26 @@
 server:
   port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test_db
+    username: root
+    password: root
+
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+
+springdoc:
+  swagger-ui:
+    path: /docs
+  version: 'v1'
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  model-and-view-allowed: true
