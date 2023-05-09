@@ -4,11 +4,11 @@ import team.wbt.newzips.common.entity.DataResponseDto;
 
 import java.util.List;
 
-public class MembersWithCount extends DataResponseDto {
+public class UsersWithCount extends DataResponseDto {
 
     private int count;
 
-    public MembersWithCount(List data) {
+    public UsersWithCount(List data) {
         super(data);
         this.count = data.size();
     }

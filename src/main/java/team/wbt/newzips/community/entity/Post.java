@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team.wbt.newzips.common.entity.BaseTimeEntity;
 import team.wbt.newzips.common.entity.Status;
-import team.wbt.newzips.member.entity.Member;
+import team.wbt.newzips.member.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class Post extends BaseTimeEntity {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private User user;
 
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<>();
@@ -41,18 +41,18 @@ public class Post extends BaseTimeEntity {
     /**
      * 연관관계 메서드
      */
-    public void setMember(Member member) {
-        this.member = member;
-        member.getPosts().add(this);
+    public void setUser(User user) {
+        this.user = user;
+        user.getPosts().add(this);
     }
 
     /**
      * 생성 메서드
      */
-    public static Post createPost(String title, String content, Member member) {
+    public static Post createPost(String title, String content, User user) {
         Post post = new Post();
         post.post(title, content);
-        post.setMember(member);
+        post.setUser(user);
         return post;
     }
 

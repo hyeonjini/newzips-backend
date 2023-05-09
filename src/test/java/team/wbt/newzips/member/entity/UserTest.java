@@ -7,36 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
-import team.wbt.newzips.member.repository.MemberRepository;
+import team.wbt.newzips.member.repository.UserRepository;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
 @Rollback(false)
-class MemberTest {
+class UserTest {
 
     @PersistenceContext
     EntityManager em;
     @Autowired
-    MemberRepository memberRepository;
+    UserRepository userRepository;
     @Test
     public void JpaEventBaseEntity() throws Exception {
         //given
-        Member member = new Member("member@test.co.kr");
-        memberRepository.save(member); // @PrePersist 발생
+        User user = new User("user@test.co.kr");
+        userRepository.save(user); // @PrePersist 발생
         em.flush(); // @PreUpdate
         em.clear();
 
         //when
-        List<Member> findMembers = memberRepository.findByEmail(member.getEmail());
+        List<User> findUsers = userRepository.findByEmail(user.getEmail());
 
         //then
-        for (Member findMember : findMembers) {
-            System.out.println("findMember.createdDate = " + findMember.getCreatedDate());
-            System.out.println("findMember.lastModifiedDate = " + findMember.getLastModifiedDate());
+        for (User findUser : findUsers) {
+            System.out.println("findMember.createdDate = " + findUser.getCreatedDate());
+            System.out.println("findMember.lastModifiedDate = " + findUser.getLastModifiedDate());
         }
     }
 }

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import team.wbt.newzips.common.entity.BaseTimeEntity;
 import team.wbt.newzips.common.entity.Status;
-import team.wbt.newzips.member.entity.Member;
+import team.wbt.newzips.member.entity.User;
 
 import static jakarta.persistence.FetchType.LAZY;
 
@@ -31,17 +31,17 @@ public class Comment extends BaseTimeEntity {
     private Post post;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     /**
      * 생성 메서드
      */
-    public static Comment createComment(String content, Post post, Member member) {
+    public static Comment createComment(String content, Post post, User user) {
         Comment comment = new Comment();
         comment.comment(content);
         comment.setPost(post);
-        comment.setMember(member);
+        comment.setUser(user);
         return comment;
     }
 
@@ -53,9 +53,9 @@ public class Comment extends BaseTimeEntity {
         post.getComments().add(this);
     }
 
-    public void setMember(Member member) {
-        this.member = member;
-        member.getComments().add(this);
+    public void setUser(User user) {
+        this.user = user;
+        user.getComments().add(this);
     }
 
     /**
